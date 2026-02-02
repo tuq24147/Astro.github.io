@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>US Cities Map</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"/>
+</head>
+<body>
+  <div id="map" style="width: 800px; height: 600px;"></div>
+
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+  <script>
+   //var map = L.map('map',(
+   //  center:{37,-100},
+   // zoom:3
+    // ))
+    var map = L.map('map').setView([39.8283, -98.5795], 3);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    L.marker([39.95, -75.0060]).addTo(map)
+      .bindPopup('<b>Philadelphia</b><br>Population: 1.57 million'+' Nickname: "City of Brotherly Love"');
+
+    L.marker([41.8781, -87.6298]).addTo(map)
+      .bindPopup('<b>Chicago</b><br>Population: 2.7 million '+ 'Nickname: "Windy City"');
+
+    L.marker([34.0522, -118.2437]).addTo(map)
+      .bindPopup('<b>Los Angeles</b><br>Population: 4.0 million '+' Nickname: "The City of Angels"');
+    L .marker([28.0522, -82]).addTo(map)
+      .bindPopup('<b>Tampa</b><br>Population: 403 thousand '+ 'Nickname : "The Big Guava"');
+      L.marker([29.0522, -95.2437]).addTo(map)
+      .bindPopup('<b>Houston</b><br>Population: 2.3 million ' +'Nickname: "Space City"');
+  </script>
+</body>
+</html>
