@@ -1,0 +1,80 @@
+// Center on Harrisburg and Lancaster
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Leaflet PA Cities Map</title>
+
+  
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<style>
+  #map {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+</style>
+
+</head>
+<body>
+
+ 
+  <div id="map"></div>
+
+  
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+
+  <script>
+//map center and zoom from controls
+var map = L.map('map').setView([40.15, -76.6], 10);
+
+var OpenStreetMap_Mapnik = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+}).addTo(map);
+
+
+//  City Data 
+var cities = [
+    {
+        name: "Harrisburg",
+        coords: [40.2637, -76.8811],
+        pop: 50927,
+        color: "blue",
+        outline: "gold"
+    },
+    {
+        name: "Lancaster",
+        coords: [40.0379, -76.3055],
+        pop: 58690,
+        color: "blue",
+        outline: "red"
+    }
+];
+
+// circles from vector layer
+cities.forEach(function(city) {
+    var cityCircle = L.circle(city.coords, {
+        color: city.outline,      // Outline color
+        fillColor: city.color,    // fill color
+        fillOpacity: 0.6,
+        radius:Math.sqrt(city.pop)*10             
+    }).addTo(map);
+
+    
+    
+   // UI layer
+    var tooltipContent = `
+        <b>Name:</b> <i>${city.name}</i><br>
+        <b>Population:</b> <i>${city.pop.toLocaleString()}</i>
+    `;
+
+    cityCircle.bindTooltip(tooltipContent, {
+        sticky: true 
+    });
+});
+  </script>
+
+</body>
+</html>
