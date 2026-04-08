@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Favorite Types of Food</title>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', {'packages': ['corechart']});
+        google.charts.setOnLoadCallback(drawCharts);
+
+        function drawCharts() {
+            drawLineChart();
+            drawHistogram();
+        }
+
+        function drawLineChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['Month', 'Pizza', 'Sushi', 'Tacos', 'Burgers', 'Pasta'],
+                ['Jan',   340,     280,     310,     260,       190],
+                ['Feb',   360,     295,     290,     270,       210],
+                ['Mar',   320,     310,     330,     250,       225],
+                ['Apr',   380,     325,     315,     280,       200],
+                ['May',   400,     340,     350,     290,       215],
+                ['Jun',   420,     360,     370,     300,       230],
+                ['Jul',   410,     350,     380,     310,       220],
+                ['Aug',   390,     330,     360,     295,       240]
+            ]);
+
+            var options = {
+                title: 'Favorite Types of Food Over Time (Monthly Survey)',
+                titleTextStyle: { fontSize: 18, bold: true, color: '#333' },
+                curveType: 'function',
+                legend: { position: 'bottom', textStyle: { fontSize: 13 } },
+                colors: ['#e74c3c', '#3498db', '#2ecc71', '#f39c12', '#9b59b6'],
+                chartArea: { width: '75%', height: '70%' },
+                backgroundColor: '#fafafa',
+                hAxis: { title: 'Month', titleTextStyle: { color: '#555' } },
+                vAxis: { title: 'Number of Votes', titleTextStyle: { color: '#555' } }
+            };
+
+            var chart = new google.visualization.LineChart(document.getElementById('food_chart'));
+            chart.draw(data, options);
+        }
+
+        function drawHistogram() {
+            var data = new google.visualization.DataTable();
+            data.addColumn('number', 'Age');
+            data.addColumn('number', 'Hours of Sleep');
+            data.addColumn({type: 'string', role: 'tooltip'});
+            data.addRows([
+                [18, 7, 'Age: 18\nHours of Sleep: 7'],  [19, 6, 'Age: 19\nHours of Sleep: 6'],  [20, 6, 'Age: 20\nHours of Sleep: 6'],  [21, 7, 'Age: 21\nHours of Sleep: 7'],  [22, 6, 'Age: 22\nHours of Sleep: 6'],
+                [23, 7, 'Age: 23\nHours of Sleep: 7'],  [24, 6, 'Age: 24\nHours of Sleep: 6'],  [25, 7, 'Age: 25\nHours of Sleep: 7'],  [26, 6, 'Age: 26\nHours of Sleep: 6'],  [27, 7, 'Age: 27\nHours of Sleep: 7'],
+                [28, 7, 'Age: 28\nHours of Sleep: 7'],  [29, 6, 'Age: 29\nHours of Sleep: 6'],  [30, 7, 'Age: 30\nHours of Sleep: 7'],  [31, 6, 'Age: 31\nHours of Sleep: 6'],  [32, 7, 'Age: 32\nHours of Sleep: 7'],
+                [33, 7, 'Age: 33\nHours of Sleep: 7'],  [34, 6, 'Age: 34\nHours of Sleep: 6'],  [35, 7, 'Age: 35\nHours of Sleep: 7'],  [36, 7, 'Age: 36\nHours of Sleep: 7'],  [37, 6, 'Age: 37\nHours of Sleep: 6'],
+                [38, 7, 'Age: 38\nHours of Sleep: 7'],  [39, 7, 'Age: 39\nHours of Sleep: 7'],  [40, 7, 'Age: 40\nHours of Sleep: 7'],  [41, 6, 'Age: 41\nHours of Sleep: 6'],  [42, 7, 'Age: 42\nHours of Sleep: 7'],
+                [43, 7, 'Age: 43\nHours of Sleep: 7'],  [44, 8, 'Age: 44\nHours of Sleep: 8'],  [45, 7, 'Age: 45\nHours of Sleep: 7'],  [46, 8, 'Age: 46\nHours of Sleep: 8'],  [47, 7, 'Age: 47\nHours of Sleep: 7'],
+                [48, 8, 'Age: 48\nHours of Sleep: 8'],  [49, 7, 'Age: 49\nHours of Sleep: 7'],  [50, 8, 'Age: 50\nHours of Sleep: 8'],  [51, 8, 'Age: 51\nHours of Sleep: 8'],  [52, 7, 'Age: 52\nHours of Sleep: 7'],
+                [53, 8, 'Age: 53\nHours of Sleep: 8'],  [54, 8, 'Age: 54\nHours of Sleep: 8'],  [55, 8, 'Age: 55\nHours of Sleep: 8'],  [56, 9, 'Age: 56\nHours of Sleep: 9'],  [57, 8, 'Age: 57\nHours of Sleep: 8'],
+                [58, 8, 'Age: 58\nHours of Sleep: 8'],  [59, 9, 'Age: 59\nHours of Sleep: 9'],  [60, 8, 'Age: 60\nHours of Sleep: 8'],  [61, 9, 'Age: 61\nHours of Sleep: 9'],  [62, 9, 'Age: 62\nHours of Sleep: 9'],
+                [63, 8, 'Age: 63\nHours of Sleep: 8'],  [65, 9, 'Age: 65\nHours of Sleep: 9'],  [70, 9, 'Age: 70\nHours of Sleep: 9'],  [75, 9, 'Age: 75\nHours of Sleep: 9'],  [80, 9, 'Age: 80\nHours of Sleep: 9']
+            ]);
+
+            var options = {
+                title: 'Age vs. Hours of Sleep per Night (50 People)',
+                titleTextStyle: { fontSize: 18, bold: true, color: '#333' },
+                legend: { position: 'none' },
+                colors: ['#3498db'],
+                chartArea: { width: '75%', height: '70%' },
+                backgroundColor: '#fafafa',
+                hAxis: { title: 'Age', titleTextStyle: { color: '#555' }, minValue: 15, maxValue: 85 },
+                vAxis: { title: 'Hours of Sleep', titleTextStyle: { color: '#555' }, minValue: 4, maxValue: 11 },
+                pointSize: 8,
+                trendlines: { 0: { type: 'linear', color: '#e74c3c', lineWidth: 2, opacity: 0.5 } }
+            };
+
+            var chart = new google.visualization.ScatterChart(document.getElementById('sleep_chart'));
+            chart.draw(data, options);
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #f0f0f0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 30px;
+        }
+        h1 { color: #e74c3c; margin-bottom: 6px; }
+        p  { color: #777; font-size: 0.9em; margin-bottom: 20px; }
+        .chart-box {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 10px;
+            margin-bottom: 40px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🍕 Favorite Types of Food</h1>
+    <p>Results from a monthly survey tracking the most popular food types.</p>
+    <div id="food_chart" class="chart-box" style="width: 900px; height: 500px"></div>
+
+    <h1>😴 Hours of Sleep per Night</h1>
+    <p>Age distribution of 50 survey respondents.</p>
+    <div id="sleep_chart" class="chart-box" style="width: 900px; height: 500px"></div>
+</body>
+</html>
